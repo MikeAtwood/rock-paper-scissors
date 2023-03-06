@@ -1,9 +1,13 @@
 // Array of choices the user and computer can choose from
+let playerScore = 0;
+let computerScore = 0;
 const arr1 = ["rock", "paper", "scissors"];
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
 const results = document.querySelector('.results');
+const playerScoreSpan = document.querySelector('.player-score');
+const computerScoreSpan = document.querySelector('.computer-score');
 
 
 
@@ -37,15 +41,17 @@ function playRound(playerSelection, computerSelection) {
   const result = checkWinner(playerSelection, computerSelection);
   if(result == "Tie"){
     const p = document.createElement('p');
-    p.innerText = "It's a Tie!"
+    p.textContent = "It's a Tie!"
     results.appendChild(p)
-  } else if (result == "Player"){
+  } else if (result === "Player"){
+    playerScore++
     const p = document.createElement('p');
-    p.innerText = `You Win! ${playerSelection} beats ${computerSelection}`;
+    p.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
     results.appendChild(p)
   } else {
     const p = document.createElement('p');
-    p.innerText = `You Lose! ${computerSelection} beats ${playerSelection}`
+    computerScore++
+    p.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`
     results.appendChild(p)
   }
    
@@ -66,22 +72,46 @@ function getPlayerChoice() {
   }
 }
 
+const checkForWinner = (playerScore, computerScore) => {
+  console.log( "1, ", playerScore, "2 ", computerScore)
+  if (playerScore === 5) {
+    const h2 = document.createElement('h2')
+    h2.textContent = `You won! ${playerScore} to ${computerScore}`
+    results.append(h2)
+  }
+  if (computerScore === 5) {
+    const h2 = document.createElement('h2')
+    h2.textContent = `You lost... ${computerScore} to ${playerScore}`
+    results.append(h2)
+  }
+}
+const updateScores = (playerScore, computerScore) => {
+  playerScoreSpan.innerText = `Player: ${playerScore} `
+  computerScoreSpan.innerText = `Computer: ${computerScore}`
+}
+
 rockBtn.addEventListener('click', () => {
   const computerSelection = getComputerChoice()
   const playerSelection = 'rock';
   playRound(playerSelection, computerSelection);
+  updateScores(playerScore, computerScore)
+  checkForWinner(playerScore, computerScore)
 })
 
 paperBtn.addEventListener('click', () => {
   const computerSelection = getComputerChoice();
   const playerSelection = 'paper';
   playRound(playerSelection, computerSelection);
+  updateScores(playerScore, computerScore)
+  checkForWinner(playerScore, computerScore)
 })
 
 scissorsBtn.addEventListener('click', () => {
   const computerSelection = getComputerChoice()
   const playerSelection = 'scissors';
   playRound(playerSelection, computerSelection);
+  updateScores(playerScore, computerScore)
+  checkForWinner(playerScore, computerScore)
 })
 
 // //------------------------------Game function here ------------------------------------//
@@ -109,8 +139,7 @@ scissorsBtn.addEventListener('click', () => {
 // }
 
 
-//  let playerScore = 0;
-//  let computerScore = 0;
+
 
 // The code below was for testing our functions
 // const playerSelection = "rock";
