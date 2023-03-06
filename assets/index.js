@@ -2,6 +2,7 @@
 let playerScore = 0;
 let computerScore = 0;
 const arr1 = ["rock", "paper", "scissors"];
+const computerSelection = getComputerChoice();
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
@@ -39,22 +40,17 @@ function checkWinner(playerSelection, computerSelection) {
 function playRound(playerSelection, computerSelection) {
   // function that plays a single round
   const result = checkWinner(playerSelection, computerSelection);
+  const p = document.createElement('p');
   if(result == "Tie"){
-    const p = document.createElement('p');
     p.textContent = "It's a Tie!"
-    results.appendChild(p)
   } else if (result === "Player"){
     playerScore++
-    const p = document.createElement('p');
     p.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
-    results.appendChild(p)
   } else {
-    const p = document.createElement('p');
     computerScore++
     p.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`
-    results.appendChild(p)
   }
-   
+   results.appendChild(p)
 }
 
 function getPlayerChoice() {
@@ -73,17 +69,14 @@ function getPlayerChoice() {
 }
 
 const checkForWinner = (playerScore, computerScore) => {
-  console.log( "1, ", playerScore, "2 ", computerScore)
+  const h2 = document.createElement('h2')
   if (playerScore === 5) {
-    const h2 = document.createElement('h2')
     h2.textContent = `You won! ${playerScore} to ${computerScore}`
-    results.append(h2)
   }
   if (computerScore === 5) {
-    const h2 = document.createElement('h2')
-    h2.textContent = `You lost... ${computerScore} to ${playerScore}`
-    results.append(h2)
+    h2.textContent = `You lost... ${computerScore} to ${playerScore}`  
   }
+  results.append(h2)
 }
 const updateScores = (playerScore, computerScore) => {
   playerScoreSpan.innerText = `Player: ${playerScore} `
@@ -119,7 +112,6 @@ scissorsBtn.addEventListener('click', () => {
 //   // code here
 //     for (let i = 0; i < 5; i++) {
 //       const playerSelection = getPlayerChoice();
-         const computerSelection = getComputerChoice();
 //       console.log(playRound(playerSelection, computerSelection));
 //       console.log("----------")
 //       if(checkWinner(playerSelection, computerSelection) == "Player"){

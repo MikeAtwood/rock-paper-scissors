@@ -1,0 +1,43 @@
+body {
+    background-color: #101010;
+    text-align: center;
+}
+
+h1 {
+    color: #e6e600;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 100px;
+}
+
+div.running-score {
+    color: #e6e600;
+    font-size: 35px;
+}
+
+div.container {
+    flex: auto;
+    justify-items: auto;
+    padding-top: 100px;
+}
+
+div.results {
+    font-size: 25px;
+    color: #e6e600;
+}
+
+button {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.btn {
+    border-radius: 10px;
+    background-color: var(--secondary-dark);
+}
